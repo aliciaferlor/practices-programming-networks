@@ -1,15 +1,17 @@
-def fiboN():
-    n = int(input("chose number: "))
+def fib(n):
     n1 = 0
     n2 = 1
-    for i in range(2, n):
-        number = n1 + n2
-        print(number, end= " ")
-        n1 = n2
-        n2 = number
+    if n == 1:
+        return n1
+    elif n == 2:
+        return n2
+    else:
+        for i in range(2, n + 1):
+            number = n1 + n2
+            n1 = n2
+            n2 = number
+        return number
 
-    return number, n
-
-number, n = fiboN()
-print("is the fibonacci sequence")
-print("The",n,"th fibonacci number is: ", number)
+print("5th Fibonacci's term", fib(5))
+print("11th Fibonacci's term", fib(11))
+print("55th Fibonacci's term", fib(55))

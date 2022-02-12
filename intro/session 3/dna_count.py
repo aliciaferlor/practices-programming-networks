@@ -1,3 +1,10 @@
-AGTACACTGGT
-ACCAGTGTACT
-ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG
+def count_bases(seq):
+    d = {"A": 0, "C": 0, "G": 0, "T": 0}
+    for b in seq:
+        d[b] = d[b] + 1
+    return d
+
+seq = input("Choose a sequence: ")
+print("Total lenght:", len(seq))
+for k,v in count_bases(seq).items():
+    print(k + ":", v)

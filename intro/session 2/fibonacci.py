@@ -9,5 +9,3 @@ for i in range(2, N):
     print(number, end=" ")
     n1 = n2
     n2 = number
-
-print()

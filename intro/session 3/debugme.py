@@ -5,8 +5,11 @@ def g(a, b):
 def f(a, b, c, d):
     t0 = a + b - g(a, 0)
     t1 = g(c, d)
-    t3 = 2 * (t0 / t1)
-    return t0 + 2*t1 + t3*t3
+    try:
+        t3 = 2 * (t0 / t1)
+        return t0 + 2*t1 + t3*t3
+    except ZeroDivisionError:
+        print("That can not be calculated")
 
 # -- Main program
 print("Result 1: ", f(5, 2, 5, 0))
