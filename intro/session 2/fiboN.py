@@ -1,15 +1,15 @@
 def fiboN():
-    N = int(input("chose number: "))
+    n = int(input("chose number: "))
     n1 = 0
     n2 = 1
-    for i in range(2, N):
+    for i in range(2, n):
         number = n1 + n2
         print(number, end= " ")
         n1 = n2
         n2 = number
 
-    return number, N
+    return number, n
 
-number, N = fiboN()
+number, n = fiboN()
 print("is the fibonacci sequence")
-print("The", N, "fibonacci number is: ", number)
+print("The",n,"th fibonacci number is: ", number)
