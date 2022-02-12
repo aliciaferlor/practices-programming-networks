@@ -1,5 +1,2 @@
-# 2019-2020-PNE-Practices
+# 2021/2022 - PNE-Practices
 My practices of Programming in Network Environments
-
-This is the first change
-Another one
