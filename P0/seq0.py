@@ -18,3 +18,4 @@ def seq_read_fasta(filename):
     seq = open(filename, "r").read()
     seq = seq[seq.find("\n"):].replace("\n", "")
     return seq
+
