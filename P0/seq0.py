@@ -19,3 +19,18 @@ def seq_read_fasta(filename):
     seq = seq[seq.find("\n"):].replace("\n", "")
     return seq
 
+def seq_count_base(seq, base):
+    return seq.count(base)
+
+def seq_count(seq):
+    count_a, count_c, count_g, count_t = 0
+    for i in seq:
+        if i == "A":
+            count_a += 1
+        elif i == "C":
+            count_c += 1
+        elif i == "G":
+            count_g += 1
+        elif i == "T":
+            count_t += 1
+    return count_a, count_c, count_g, count_t

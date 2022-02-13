@@ -1,4 +1,6 @@
 import seq0
+print("""-----| Exercise 2 |------""")
+
 filename = seq0.valid_filename()
 seq = seq0.seq_read_fasta(filename)
 text = seq[:20]
