@@ -39,3 +39,10 @@ def seq_count(seq):
 def seq_reverse(fragment):
     reverse = fragment[::-1]
     return reverse
+
+def seq_complement(fragment):
+    complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}
+    new = ''
+    for base in fragment:
+        new += complement[base]
+    return new

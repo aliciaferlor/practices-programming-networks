@@ -6,5 +6,5 @@ seq = seq0.seq_read_fasta(filename)
 fragment = seq[:20]
 reverse = seq0.seq_reverse(fragment)
 
-print("Sequence: ", fragment)
-print("Reverse:", reverse)
+print("Fragment of DNA sequence: ", fragment)
+print("Reverse sequence:", reverse)
