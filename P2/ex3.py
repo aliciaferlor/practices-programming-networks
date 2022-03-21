@@ -9,6 +9,7 @@ IP = "127.0.0.1"
 PORT = 6123
 
 c = Client(IP, PORT)
+print("sending message to the server...")
 response = c.talk('HEY')
 
-print('Response:', response)
+print(f"Response: {response}")

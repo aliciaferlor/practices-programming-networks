@@ -7,15 +7,15 @@ EXERCISE = 4
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
 IP = "127.0.0.1"
-PORT = 6123
+PORT = 8080
 
 c = Client(IP, PORT)
-response = c.talk('HEY')
 
-print('Response:', response)
 
-s1 = Seq()
-filename = s1.get_file()
-s1.read_fasta2(filename)
-
-print("")
+gene_list = ["U5", "FRAT1", "ADA"]
+for gene in gene_list:
+    s = Seq()
+    s.read_fasta2(f"../P0/sequences/{gene}")
+    c.debug_talk(f"Sending {gene} Gene to the server...")
+    c.debug_talk(str(s))
+    print(c)

@@ -1,8 +1,8 @@
 import socket
 
 # Configure the Server's IP and PORT
-IP = "127.0.0.1"
 PORT = 8080
+IP = "127.0.0.1"
 
 # -- Step 1: create the socket
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -15,5 +15,10 @@ ls.listen()
 
 print("The server is configured!")
 
+# -- Waits for a client to connect
+print("Waiting for Clients to connect")
+ls.accept()
+
+print("A client has connected to the server!")
 # -- Close the socket
 ls.close()
