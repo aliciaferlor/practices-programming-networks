@@ -1,7 +1,10 @@
 from Client0 import Client
 from seq1 import Seq
 
-print(f"-----| Practice {2}, Exercise {5} |------")
+PRACTICE = 2
+EXERCISE = 5
+
+print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
 IP = "127.0.0.1"
 PORT = 8081
