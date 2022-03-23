@@ -11,6 +11,7 @@ ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ls.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 list_seq = ['ACGGTATTCGGTA', 'CGTGTCCACGCCAA', 'CTCTCTCGAGAGAG', 'TACTCGGCCG', 'CGCGTAGGGATGACGTAGC']
+list_genes = ["ADA", "FRAT1", "FXN", "RNU6_269P", "U5"]
 
 PORT = 8081
 IP = "127.0.0.1"
@@ -81,9 +82,9 @@ while True:
 
         elif command == 'GENE':
             print_colored("GENE", "blue")
-            folder = "../P0/sequences/ADA"
+            folder = "./sequences/"
             s1 = Seq()
-            s1.read_fasta(folder)
+            s1.read_fasta(folder + argument)
             response = str(s1) + "\n"
             print(response)
             cs.send(response.encode())
