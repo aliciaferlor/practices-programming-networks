@@ -27,7 +27,6 @@ class Seq:
             i += 1
         return valid
 
-
     def valid_sequence(self):
         valid = True
         i = 0
@@ -37,8 +36,6 @@ class Seq:
                 valid = False
             i += 1
         return valid
-
-
 
     def __str__(self):
         """Method called when the object is being printed"""
@@ -52,7 +49,6 @@ class Seq:
             return len(self.strbases)
         else:
             return 0
-
 
     def count_base(self):
         count_a = 0
@@ -138,4 +134,6 @@ class Seq:
                 highest_value = int(v)
                 base = k
         return base
+
+
 

@@ -1,10 +1,12 @@
 import seq1
 
+
 def result(i, sequence):
     print("Sequence " + str(i) + " (Length: " + str(sequence.len()) + "): " + str(sequence))
     print("Bases: ", sequence.count())
     print("Reversed: ", sequence.reverse())
     print("Complementary: ", sequence.complement())
+
 
 print("-----| Exercise 8 |-----")
 list_seq = list(seq1.test_sequences())

@@ -6,7 +6,7 @@ EXERCISE = 3
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
 IP = "127.0.0.1"
-PORT = 6123
+PORT = 8080
 
 c = Client(IP, PORT)
 print("sending message to the server...")

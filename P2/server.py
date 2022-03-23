@@ -2,7 +2,7 @@ import socket
 
 # Configure the Server's IP and PORT
 IP = "127.0.0.1"
-PORT = 6123
+PORT = 8080
 MAX_OPEN_REQUESTS = 5
 
 # Counting the number of connections
