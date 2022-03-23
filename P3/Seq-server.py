@@ -43,7 +43,7 @@ while True:
 
         if command != "PING":
             argument = split_command[1]
-
+        print_colored(f"Message received: {message}", "cyan")
         if command == "PING":
             print_colored("PING", "green")
             response = "OK!\n"
@@ -81,7 +81,7 @@ while True:
             cs.send(response.encode())
 
         elif command == 'GENE':
-            print_colored("GENE", "blue")
+            print_colored(f"GENE {argument}", "blue")
             folder = "./sequences/"
             s1 = Seq()
             s1.read_fasta(folder + argument)
