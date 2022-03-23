@@ -4,7 +4,7 @@ list_seq = ['ACCGTGGTGTAACGAAA', 'ATTTGCTGTCTCT', 'CTCTCTCGAGAGAG', 'TACTCGGCCG'
 list_genes = ["ADA", "FRAT1", "FXN", "RNU6_269P", "U5"]
 
 IP = "127.0.0.1"
-PORT = 8085
+PORT = 8081
 c = Client(IP, PORT)
 print('Connection to SERVER. Client ip, port: ', str(IP) + ',', str(PORT))
 
