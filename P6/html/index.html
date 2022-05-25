@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bases server</title>
+</head>
+<body style="background-color: darkseagreen;">
+    <h1 style="font-family: 'Bodoni MT'" >Seq2 Server</h1>
+    <p style="font-family: 'Agency FB'"</p> Access to the server</body>
+    <hr>
+    <form action="/ping" >
+     Is the server alive? <input type="submit" value="PING">
+    </form>
+    <hr>
+
+    <form action="/get">
+         Get a sequence. Select a sequence number:
+        <select name="n_sequence">
+            {% for n in range(0, context.n_sequences) %}
+            <option value={{n}}>{{n}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="GET">
+    </form>
+    <hr>
+    <form action="/gene">
+         Get a sequence. Select a sequence number:
+        <select name="gene_name">
+            {% for g in context.genes %}
+            <option value={{g}}>{{g}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="GENE">
+    </form>
+    <form action="/operation">
+        Write a sequence: <input type="text" name="sequence">
+        Select function:
+        Info: <input type="radio" name="calculation" value="Info">
+        Reverse: <input type="radio" name="calculation" value="Rev">
+        Complementary: <input type="radio" name="calculation" value="Comp">
+        <br>
+        <input type="submit" value="OPERATE">
+    </form>
+</html>

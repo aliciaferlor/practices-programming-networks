@@ -2,6 +2,8 @@ from Client0 import Client
 
 list_seq = ['ACCGTGGTGTAACGAAA', 'ATTTGCTGTCTCT', 'CTCTCTCGAGAGAG', 'TACTCGGCCG', 'CGCGTAGGGATGACGTAGC']
 list_genes = ["ADA", "FRAT1", "FXN", "RNU6_269P", "U5"]
+new_seq = ["ACGTACGT"]
+
 
 IP = "127.0.0.1"
 PORT = 8081
@@ -33,3 +35,8 @@ print("- Testing GENE...")
 for gene in list_genes:
     response = c.talk("GENE " + gene)
     print(f"{response}")
+
+print("- Testing ADD...")
+response = c.talk("ADD " + new_seq[0])
+print(f"{response}")
+

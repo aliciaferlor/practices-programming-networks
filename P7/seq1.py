@@ -62,13 +62,14 @@ class Seq:
         return {'A': a, 'C': c, 'T': t, 'G': g}
 
     def percentages(self):
+        from termcolor import colored
         a, c, t, g = self.count_bases()
         per_a = "(" + str(round(a / self.len() * 100, 1)) + "%)"
         per_c = "(" + str(round(c / self.len() * 100, 1)) + "%)"
         per_t = "(" + str(round(t / self.len() * 100, 1)) + "%)"
         per_g = "(" + str(round(g / self.len() * 100, 1)) + "%)"
-        return "A: " + str(a) + "  " + per_a + "\n" + "C: " + str(c) + "  " + per_c + "\n" + "T: " + str(
-            t) + "  " + per_t + "\n" + "G: " + str(g) + "  " + per_g
+        return colored("A: " + str(a) + "  " + per_a + "\n" + "C: " + str(c) + "  " + per_c + "\n" + "T: " + str(
+            t) + "  " + per_t + "\n" + "G: " + str(g) + "  " + per_g, "magenta")
 
     def reverse(self):
         if self.str_bases == Seq.null_seq:

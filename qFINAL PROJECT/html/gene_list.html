@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Genome server</title>
+      </head>
+      <body style="background-color: #ebac94;">
+      <h1>Gene list</h1>
+        <p>Chromosome : {{context.chromo}} </p>
+        <p>Start : {{context.start}} </p>
+        <p>End: {{context.end}} </p>
+        <p>List of genes : {{context.gene_list}}
+        {% for n in context.gene_list %}
+        <ul><li type="disc">{{n}}</li></ul>
+        {% endfor %}
+        <a href="/">Main page</a>
+      </body>
+    </html>

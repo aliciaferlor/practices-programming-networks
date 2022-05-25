@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Genome server</title>
+      </head>
+      <body style="background-color: #9baec7;">
+      <h1>Information about the karyotype</h1>
+        <p style="font-family: 'Agency FB'"> Chromosomes of the <b><span style="color:maroon"> {{context.specie}}</span></b> are :<br>
+        <p>{% for n in context.Karyotype %}
+        {{n}}<br>
+            {% endfor %} </p>
+        <a href="/">Main page</a>
+      </body>
+    </html>

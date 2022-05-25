@@ -12,6 +12,8 @@ ls.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 list_seq = ['ACGGTATTCGGTA', 'CGTGTCCACGCCAA', 'CTCTCTCGAGAGAG', 'TACTCGGCCG', 'CGCGTAGGGATGACGTAGC']
 list_genes = ["ADA", "FRAT1", "FXN", "RNU6_269P", "U5"]
+new_seq = ["ACGTACGT"]
+
 
 PORT = 8081
 IP = "127.0.0.1"
@@ -88,6 +90,17 @@ while True:
             response = str(s1) + "\n"
             print(response)
             cs.send(response.encode())
+
+        elif command == "ADD":
+            print_colored(f"ADD", "yellow")
+            try:
+                s1 = Seq(argument)
+                response = Seq.addition(s1) + "\n"
+                print(response)
+                cs.send(response.encode())
+            except TypeError:
+                response = "The sequence is not valid, so the bases can not be multiplied"
+                print(response)
         else:
             response = 'This command is not available.'
             cs.send(str(response).encode())

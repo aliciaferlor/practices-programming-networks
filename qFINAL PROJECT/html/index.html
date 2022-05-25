@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Genome server</title>
+      </head>
+      <body style=" background-color: #bbedaf;">
+        <h1 style="font-family: 'Bodoni MT'" >Browsing Human and Vertebrates genome </h1>
+        <b><p><span style= "color:#404b7d"> BASIC Level Services </span></p></b>
+        <form action="listSpecies" method="get">
+          1) List of species in the genome database <br>Limit: <input type="text" name="limit">
+          <br>
+          <input type="submit" value="Send">
+        </form>
+        <form action="karyotype" method="get">
+          2) Information about the karyotype <br>Select the species: <input type="text" name="specie">
+          <br>
+          <input type="submit" value="Send">
+        </form>
+        <form action="chromosomeLength" method="get">
+          3) Chromosome length <br>Select the species: <input type="text" name="specie"><br>Select a chromosome: <input type="text" name="chromosome">
+          <br>
+          <input type="submit" value="Send">
+          </form>
+          <br>
+       <b><p><span style= "color:#404b7d"> MEDIUM Level Services </span></p></b>
+        <form action="geneSeq" method="get">
+          1) Enter a gene name or ID to find its sequence <br>Gene: <input type="text" name="gene">
+          <br>
+          <input type="submit" value="Send">
+        </form>
+        <form action="geneInfo" method="get">
+          2) Enter a gene name or ID to find its basic info <br>Gene: <input type="text" name="gene">
+          <br>
+          <input type="submit" value="Send">
+        </form>
+        <form action="geneCalc" method="get">
+          3) Enter a gene name or ID to perform some calculations <br>Gene: <input type="text" name="gene">
+          <br>
+          <input type="submit" value="Send">
+        </form>
+        <form action="geneList" method="get">
+          4) Enter a chromosome from start to end positions <br>Chromosome: <input type="text" name="chromo">
+          <br>Start: <input type="text" name="start"><br>End: <input type="text" name="end">
+          <br>
+          <input type="submit" value="Send">
+        </form>
+
+        </form>
+      </body>
+    </html>
