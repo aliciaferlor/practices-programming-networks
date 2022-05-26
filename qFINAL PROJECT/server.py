@@ -74,26 +74,34 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         elif path == "/listSpecies":
             try:
-                limit = arguments["limit"][0]
+                limit = int(arguments["limit"][0])
                 endpoint = '/info/species'
                 new_dic = ensembl_info(endpoint)["species"]
                 list_species = []
-                for n in range(0, int(limit)):
+                for n in range(0, limit):
                     list_species.append(new_dic[n]["common_name"])
-                contents = read_html_file("list_species.html").render(context={
+
+                if "json" in arguments:
+                    contents = {"limit": limit,
+                    "list_species": list_species,
+                    "number_species": len(new_dic)}
+                else:
+                    contents = read_html_file("list_species.html").render(context={
                     "limit": limit,
                     "list_species": list_species,
                     "number_species": len(new_dic)})
-            except KeyError:
-                value = len(ensembl_info('/info/species')["species"])
-                print("Enter a value from 0 to", int(value))
-                contents = read_html_file('error.html').render()
-            except IndexError:
-                value = len(ensembl_info('/info/species')["species"])
-                print("Enter a value from 0 to", int(value))
-                contents = read_html_file('error.html').render()
+
+            except TypeError:
+                if "json" in arguments:
+                    contents = {"error": list_species}
+                else:
+                    contents = read_html_file('error.html').render(context={"error": list_species})
+
             except ValueError:
-                contents = read_html_file('error.html').render()
+                if "json" in arguments:
+                    contents = {"error": "The entry should be an integer"}
+                else:
+                    contents = read_html_file('error.html').render()
 
         elif path == "/karyotype":
             try:
@@ -101,25 +109,39 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 endpoint = '/info/assembly/'
                 new_dic = ensembl_info(endpoint + specie)
                 context = {"Karyotype": new_dic["karyotype"], "specie": specie}
-                contents = read_html_file("karyotype.html").render(context = context)
+
+                if "json" in arguments:
+                    contents = {"karyotype": new_dic["karyotype"]}
+                else:
+                    contents = read_html_file("karyotype.html").render(context = context)
 
             except KeyError:
-                contents = read_html_file('error.html').render()
+                if "json" in arguments:
+                    contents = {"error": "The key is not in the ensembl data"}
+                else:
+                    contents = read_html_file('error.html').render()
+
 
         elif path == "/chromosomeLength":
             try:
-                specie = arguments["specie"][0].replace(' ', '_')
-                chromosome = arguments["chromosome"][0].replace(' ', '')
+                specie = arguments["specie"][0].strip()
+                chromosome = arguments["chromosome"][0].strip()
                 endpoint = '/info/assembly/'
                 new_dic = ensembl_info(endpoint + specie + '/' + chromosome)
-                print(new_dic)
+                #print(new_dic)
 
-                contents = read_html_file("chromosome_length.html").render(context={
+                if "json" in arguments:
+                    contents = {"length": new_dic["length"]}
+                else:
+                    contents = read_html_file("chromosome_length.html").render(context={
                     "specie": specie,
                     "length": new_dic["length"]
                 })
             except KeyError:
-                contents = read_html_file('error.html').render()
+                if "json" in arguments:
+                    contents = {"error": "The key is not in the ensembl data"}
+                else:
+                    contents = read_html_file('error.html').render()
 
         elif path == '/geneSeq':
             endpoint = '/sequence/id/'
@@ -128,7 +150,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 gene = gene_dic[gene]
 
             new_dic = ensembl_info(endpoint + gene)
-            contents = read_html_file("gene_seq.html").render(context={
+            if "json" in arguments:
+                contents = {"seq": new_dic["seq"]}
+            else:
+                contents = read_html_file("gene_seq.html").render(context={
                 "id": new_dic["id"],
                 "gene_seq": new_dic["seq"]
             })
@@ -140,13 +165,17 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             new_dic = ensembl_info(endpoint + gene)
             desc_dic = new_dic["desc"].split(":") #turns the items of the key desc into a list
-            contents = read_html_file("gene_info.html").render(context={
+
+            if "json" in arguments:
+                contents = {"start": int(desc_dic[3]), "end": int(desc_dic[4]), "length": len(new_dic["seq"])}
+            else:
+                contents = read_html_file("gene_info.html").render(context={
                 "start": desc_dic[3],
                 "end": desc_dic[4],
                 "length": len(new_dic["seq"]),
                 "id": new_dic["id"],
-                "chromosome": desc_dic[2]
-            })
+                "chromosome": desc_dic[2] })
+
         elif path == '/geneCalc':
             endpoint = '/sequence/id/'
             gene = arguments["gene"][0]
@@ -155,11 +184,16 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             new_dic = ensembl_info(endpoint + gene)
             s = Seq(new_dic["seq"])
-            contents = read_html_file("gene_calc.html").render(context={
+
+            if "json" in arguments:
+                contents = {"length": len(new_dic["seq"]), "percentages": Seq.percentages(s)}
+            else:
+                contents = read_html_file("gene_calc.html").render(context={
                 "id": new_dic["id"],
                 "percentages": Seq.percentages(s),
                 "length": len(new_dic["seq"])
             })
+
         elif path == '/geneList':
             try:
                 endpoint = '/phenotype/region/homo_sapiens/'
@@ -176,12 +210,15 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                     gene_list.append(dict["attributes"]["associated_gene"])
                     print("Gene list:", gene_list)
 
-                    contents = read_html_file("gene_list.html").render(context={
-                    "chromo": chromo,
-                    "start": start,
-                    "end": end,
-                    "gene_list": gene_list,
-                })
+                    if "json" in arguments:
+                        contents = {"gene": gene_list}
+                    else:
+                        contents = read_html_file("gene_list.html").render(context={
+                        "chromo": chromo,
+                        "start": start,
+                        "end": end,
+                        "gene_list": gene_list,
+                    })
                 except TypeError:
                    contents = read_html_file("error.html").render()
             except KeyError:
@@ -194,7 +231,12 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         self.send_response(200)  # -- Status line: OK!
 
         # Define the content-type header:
-        self.send_header('Content-Type', 'text/html')
+
+        if "json" in arguments.keys():
+            contents = json.dumps(contents)
+            self.send_header("Content-Type", "application/json")
+        else:
+            self.send_header('Content-Type', 'text/html')
         self.send_header('Content-Length', len(contents.encode()))
 
         # The header is finished
